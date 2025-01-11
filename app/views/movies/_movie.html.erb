@@ -1,12 +1,16 @@
-<div id="<%= dom_id movie %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= movie.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= movie.description %>
-  </p>
-
+<div id="<%= dom_id movie %>" class="max-w-sm rounded-b overflow-hidden shadow-lg hover:bg-voodoo-100">
+  <%= link_to movie, class: "flex flex-col h-full" do %>
+    <%= image_tag("https://placehold.co/300") %>
+    <div class="px-6 py-4 flex flex-col justify-between grow">
+      <div>
+        <div class="flex items-center justify-between font-bold text-xl mb-2">
+          <%= movie.title %>
+        </div>
+        <p class="text-sm font-extralight">Sumit Sah</p>
+        <div>
+          <p class="text-md font-light"> Free </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
