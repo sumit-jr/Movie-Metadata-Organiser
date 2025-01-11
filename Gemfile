@@ -1,12 +1,15 @@
 source "https://rubygems.org"
 
 gem "bootsnap", require: false
+gem "devise", "~> 4.9", ">= 4.9.4"
 gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
+gem "font-awesome-sass", "~> 6.5", ">= 6.5.1"
 gem "importmap-rails"
 gem "jbuilder"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.2.2", ">= 7.2.2.1"
+gem "sassc-rails", "~> 2.1", ">= 2.1.2"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
