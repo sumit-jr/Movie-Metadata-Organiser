@@ -4,6 +4,7 @@ gem "bootsnap", require: false
 gem "devise", "~> 4.9", ">= 4.9.4"
 gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
 gem "font-awesome-sass", "~> 6.5", ">= 6.5.1"
+gem "image_processing", "~> 1.2"
 gem "importmap-rails"
 gem "jbuilder"
 gem "pg", "~> 1.1"
