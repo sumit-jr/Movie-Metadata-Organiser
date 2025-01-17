@@ -4,4 +4,8 @@ class Movie < ApplicationRecord
   end
   has_many :episodes
   has_and_belongs_to_many :genres
+
+  def first_episode
+    self.episodes.order(:position).first
+  end
 end
