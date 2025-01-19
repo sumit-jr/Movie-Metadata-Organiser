@@ -2,45 +2,35 @@
     <div class="mt-6 lg:mt-0 flex justify-center items-center w-full">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full">
             <div class="bg-amaranth-500 p-4">
-                <h2 class="text-white-50 text-2xl font-bold">Start watching</h2>
+                <h2 class="text-white-50 text-2xl font-bold">Start Watching</h2>
             </div>
             <div class="p-4">
                 <% if user_signed_in? %>
-                    <p class="text-gray-700 text-base mb-4">
-                        Start the movie and begin watching the episodes to learn more about the topic.
-                    </p>
-                    <%= link_to "Start Movie", movie_episode_path(@movie, @movie.first_episode), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150 " %>
+                    <% if @completed_episodes&.any? %>
+                        <% if @completed_episodes.count == @movie.episodes.count %>
+                            <p class="text-gray-700 text-base mb-4">
+                                You have completed this movie. Congrats!
+                            </p>
+                            <%= link_to "Watch Again", movie_episode_path(@movie, @movie.first_episode), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+                        <% else %>
+                            <p class="text-gray-700 text-base mb-4">
+                                Continue the movie and pick up where you left off.
+                            </p>
+                            <%= link_to "Continue Movie", movie_episode_path(@movie, @movie.next_episode(current_user)), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+                        <% end %>
+                    <% else %>
+                        <p class="text-gray-700 text-base mb-4">
+                            Start the movie and begin watching all about the adventrous world sci-fi.
+                        </p>
+                        <%= link_to "Start movie", movie_episode_path(@movie, @movie.first_episode), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+                    <% end %> 
                 <% else %>
                     <p class="text-gray-700 text-base mb-4">
-                        Sign up for free today and start exploring the new addventure
+                        Sign up for free today and start exploring the endless possibilities.
                     </p>
-                    <%= link_to "Sign Up", new_user_registration_path, class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150 " %>
+                    <%= link_to "Sign Up", new_user_registration_path, class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
                 <% end %>
             </div>
-        </div>
-    </div>    
-            <% if @movie.paid %>
-                <div class="mt-6 flex justify-center items-center w-full">
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full">
-                        <div class="bg-amaranth-500 p-4">
-                            <h2 class="text-white-50 text-2xl font-bold">Get more content</h2>
-                        </div>
-                        <div class="p-4">
-                            <% if user_signed_in? %>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Unlock the full movie and start watching all the episodes.
-                                </p> 
-                                <button class="bg-revolver-600 hover:bg-revolver700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150">Unlock Full Movie</button>
-                            <% else %>
-                                <p class="text-gray-700 text-base mb-4">
-                                    Sign up for free and start exploring the endless possibilities.
-                                </p> 
-                                <%= link_to "Sign Up", new_user_registration_path, class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150 " %>
-                            <% end %>
-                        </div>
-                    </div> 
-                </div>
-            <% end %>
         </div>
     </div>
 </div>

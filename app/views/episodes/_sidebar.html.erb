@@ -9,6 +9,7 @@
         <% else %>
             <%= link_to movie_episode_path(movie, episode) do %>
                 <div class="border p-6 hover:bg-gray-200 <%= @episode.id = episode.id ?          'bg-amaranth-100' : ''  %>">
+                    <%= completed_episodes&.include?(episode.id) ? icon('fa-solid', 'check-circle', class: "mr-2 text-green-500") : nil %>
                     <span class="font-light"> <%= episode.title %> </span>
                 </div>
             <% end %>

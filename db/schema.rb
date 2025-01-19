@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_17_012029) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_18_015116) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_012029) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "episode_users", force: :cascade do |t|
+    t.bigint "episode_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["episode_id"], name: "index_episode_users_on_episode_id"
+    t.index ["user_id"], name: "index_episode_users_on_user_id"
   end
 
   create_table "episodes", force: :cascade do |t|
@@ -108,5 +118,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_012029) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "episode_users", "episodes"
+  add_foreign_key "episode_users", "users"
   add_foreign_key "episodes", "movies"
 end
