@@ -8,4 +8,23 @@ class Movie < ApplicationRecord
   def first_episode
     self.episodes.order(:position).first
   end
+
+  def next_episode(current_user)
+    if current_user.blank?
+      return self.episodes.order(:position).first
+    end
+    completed_episodes = current_user.episode_users.includes(:episode).where(completed: true).where(episodes: { movie_id: self.id })
+    started_episodes = current_user.episode_users.includes(:episode).where(completed: false).where(episodes: { movie_id: self.id }).order(:position)
+
+    if started_episodes.any?
+      return started_episodes.first.episode
+    end
+
+    episodes = self.episodes.where.not(id: completed_episodes.pluck(:episode_id)).order(:position)
+    if episodes.any?
+      episodes.first
+    else
+      self.episodes.order(:position).first
+    end
+  end
 end

@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
   # GET /movies/1 or /movies/1.json
   def show
+    @completed_episodes = current_user&.episode_users&.joins(:episode)&.where(completed: true, episode: { movie: @movie })&.pluck(:episode_id)
   end
 
   # GET /movies/new
