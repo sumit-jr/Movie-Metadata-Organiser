@@ -13,6 +13,7 @@ gem "rails", "~> 7.2.2", ">= 7.2.2.1"
 gem "sassc-rails", "~> 2.1", ">= 2.1.2"
 gem "sprockets-rails"
 gem "stimulus-rails"
+gem "stripe", "~> 10.3"
 gem "tailwindcss-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]

@@ -16,14 +16,14 @@
                             <p class="text-gray-700 text-base mb-4">
                                 Continue the movie and pick up where you left off.
                             </p>
-                            <%= link_to "Continue Movie", movie_episode_path(@movie, @movie.next_episode(current_user)), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+                            <%= link_to "Continue movie", movie_episode_path(@movie, @movie.next_episode(current_user)), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
                         <% end %>
                     <% else %>
                         <p class="text-gray-700 text-base mb-4">
-                            Start the movie and begin watching all about the adventrous world sci-fi.
+                            Start the movie and begin learning all about the adventure.
                         </p>
                         <%= link_to "Start movie", movie_episode_path(@movie, @movie.first_episode), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
-                    <% end %> 
+                    <% end %>
                 <% else %>
                     <p class="text-gray-700 text-base mb-4">
                         Sign up for free today and start exploring the endless possibilities.
@@ -33,4 +33,46 @@
             </div>
         </div>
     </div>
+    <% if @movie.paid %>
+        <div class="mt-6 flex justify-center items-center w-full">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full">
+                <div class="bg-amaranth-500 p-4">
+                    <% if @user_unlocked_movie %>
+                        <h2 class="text-white-50 text-2xl font-bold">You have premium access</h2>
+                    <% else %>
+                        <h2 class="text-white-50 text-2xl font-bold">Get more content</h2>
+                    <% end %>
+                </div>
+                <div class="p-4">
+                    <% if user_signed_in? %>
+                        <% if @user_unlocked_movie %>
+                            <p class="text-gray-700 text-base mb-4">
+                                You have unlocked this movie. Enjoy!
+                            </p>
+                            <% if @movie.premium_description.present? %>
+                                <%= @movie.premium_description %>
+                            <% end %>
+                        <% else %>
+                            <p class="text-gray-700 text-base mb-4">
+                                Unlock more content by purchasing the full movie.
+                            </p>
+                            <% if @movie.premium_description.present? %>
+                                <%= @movie.premium_description %>
+                            <% end %>
+                            <%= form_tag checkouts_path(@movie), method: :post, class: "mt-4" do %>
+                                <%= hidden_field_tag :movie_id, @movie.id %>
+                                <%= hidden_field_tag :stripeEmail, current_user.email %>
+                                <%= button_tag "Unlock Full movie", class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        <p class="text-gray-700 text-base mb-4">
+                            Sign up for free today and start exploring the endless possibilities.
+                        </p>
+                        <%= link_to "Sign Up", new_user_registration_path, class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
 </div>
