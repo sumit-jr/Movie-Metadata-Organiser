@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "bootsnap", require: false
+gem "byebug", "~> 11.1", ">= 11.1.3"
 gem "devise", "~> 4.9", ">= 4.9.4"
 gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
 gem "font-awesome-sass", "~> 6.5", ">= 6.5.1"
