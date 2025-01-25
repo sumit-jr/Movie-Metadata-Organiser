@@ -1,6 +1,8 @@
 class EpisodesController < ApplicationController
   before_action :set_episode, only: %i[ show update ]
   before_action :set_movie
+  before_action :check_paid
+
   def show
     @completed_episodes = current_user.episode_users.where(completed: true).pluck(:episode_id)
     @movie = @episode.movie
@@ -27,5 +29,15 @@ class EpisodesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_episode
       @episode = Episode.find(params[:id])
+    end
+
+    def check_paid
+      if @episode.paid && !current_user.movie_users.where(movie_id: params[:movie_id]).exists?
+        if @episode.previous_episode
+          redirect_to movie_episode_path(@movie, @episode.previous_episode), notice: "You must purchase the full movie to access the next episode"
+        else
+          redirect_to movie_path(@movie), notice: "You must purchase the full movie to access the next episode"
+        end
+      end
     end
 end
