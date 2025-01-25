@@ -4,6 +4,8 @@ class EpisodesController < ApplicationController
   def show
     @completed_episodes = current_user.episode_users.where(completed: true).pluck(:episode_id)
     @movie = @episode.movie
+    @paid_for_movie = current_user.movie_users.where(movie: @movie).exists?
+    puts "paid_for_movie: #{@paid_for_movie}"
   end
 
   def update

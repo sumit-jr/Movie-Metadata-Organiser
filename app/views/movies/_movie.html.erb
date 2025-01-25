@@ -9,10 +9,13 @@
       <div>
         <div class="flex items-center justify-between font-bold text-xl mb-2">
           <%= movie.title %>
+          <% if user_unlocked_movies&.include? movie.id %>
+            <span class="ml-2 text-white-50 text-xs px-2 py-1 rounded bg-green-500">Unlocked</span>
+          <% end %>
         </div>
         <p class="text-sm font-extralight">Sumit Sah</p>
         <div>
-          <p class="text-md font-light"> Free </p>
+          <p class="text-md font-light"> <%= movie.paid ? "Premium Content" : "Free" %> </p>
         </div>
       </div>
     </div>
