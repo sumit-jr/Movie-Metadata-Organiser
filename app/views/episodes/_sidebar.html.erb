@@ -1,6 +1,6 @@
 <div class="w-full">
     <% movie.episodes.order(:position).each do |episode| %>
-        <% if episode.paid %>
+        <% if episode.paid && !paid_for_movie %>
             <div class="border p-6 hover:bg-gray-200">
                 <div>
                     <%= icon("fa-solid", "lock", class: "mr-2 text-gray-600") %><span class="font-light"> <%= episode.title %> </span>

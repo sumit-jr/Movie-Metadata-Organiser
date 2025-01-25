@@ -4,6 +4,6 @@
   <% end %>
 
   <div id="movies" class="min-w-full flex flex-wrap justify-center gap-14 pb-6">
-    <%= render @movies %>
+    <%= render @movies, { user_unlocked_movies: @user_unlocked_movies } %>
   </div>
 </div>
