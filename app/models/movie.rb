@@ -5,6 +5,8 @@ class Movie < ApplicationRecord
   has_many :episodes
   has_many :movie_users
   has_and_belongs_to_many :genres
+  has_rich_text :description
+  has_rich_text :premium_description
 
   def first_episode
     self.episodes.order(:position).first
