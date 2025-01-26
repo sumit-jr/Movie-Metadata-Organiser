@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   resources :checkouts, only: [ :create ]
 
+  namespace :admin do
+    resources :movies do
+    end
+  end
+
   get "admin" => "admin#index"
 
   post "/webhook" => "webhooks#stripe"
