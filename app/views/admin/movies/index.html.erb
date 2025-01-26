@@ -1,16 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<div class="w-full">
+  <div class="flex justify-end items-center">
+    <%= link_to "New movie", new_admin_movie_path, class: "bg-amaranth-500 hover:bg-amaranth-600 px-4 py-2 cursor-pointer rounded text-white-50" %>
+  </div>
+  <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Movies" %>
+  <% content_for :title, "Movies" %>
 
-<h1>Movies</h1>
-
-<div id="admin_movies">
-  <% @admin_movies.each do |admin_movie| %>
-    <%= render admin_movie %>
-    <p>
-      <%= link_to "Show this movie", admin_movie %>
-    </p>
-  <% end %>
+  <div id="admin_movies", class="min-w-full flex flex-wrap justify-center gap-5 mt-6 pb-6">
+    <% @admin_movies.each do |admin_movie| %>
+      <%= render admin_movie %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New movie", new_admin_movie_path %>
