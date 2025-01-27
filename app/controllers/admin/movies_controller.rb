@@ -1,4 +1,7 @@
 class Admin::MoviesController < AdminController
+  def show
+    @admin_movie = Movie.find(params[:id])
+  end
   def index
     @admin_movies = Movie.all
   end
