@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Episodes" %>
+
+<h1>Episodes</h1>
+
+<div id="admin_episodes">
+  <% @admin_episodes.each do |admin_episode| %>
+    <%= render admin_episode %>
+    <p>
+      <%= link_to "Show this episode", [:admin, @admin_movie, admin_episode] %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New episode", new_admin_movie_episode_path(@admin_movie) %>
