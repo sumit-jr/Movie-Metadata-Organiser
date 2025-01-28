@@ -1,5 +1,7 @@
 class Episode < ApplicationRecord
-  has_one_attached :video
+  has_one_attached :video do |attachable|
+    attachable.variant :thumb, resize_to_limit: [ 500, 500 ]
+  end
   belongs_to :movie
   has_many :episode_users, dependent: :destroy
 
