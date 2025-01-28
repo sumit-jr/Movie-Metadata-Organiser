@@ -1,2 +1,17 @@
-<div id="<%= dom_id episode %>">
+<div id="<%= dom_id episode %>" class="max-w-sm min-w-64 rounded-b overflow-hidden shadow-lg hover:bg-amaranth-100">
+    <%= link_to [:admin, @admin_movie, episode] do %>
+        <% if episode.video.present? %>
+            <%= image_tag episode.video.preview(:thumb), class: "w-full rounded-t" %>
+        <% else %>
+            <%= image_tag("https://via.placeholder.com/320") %>
+        <% end %>
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">
+                <% if episode.paid %>
+                    <%= icon('fa-solid', 'lock', class: "mr-2 text-gray-600") %>
+                <% end %>
+                <%= episode.title %>
+            </div>
+        </div>
+    <% end %>
 </div>

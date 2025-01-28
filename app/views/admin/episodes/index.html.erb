@@ -1,16 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<div class="flex flex-col w-full">
 
-<% content_for :title, "Episodes" %>
+  <div class="mb-10"> 
+    <p style="color: green"><%= notice %></p>
+    <h1 class="mb-4 font-bold text-2xl"><%= @admin_movie.title %> Episodes </h1>
+    <%= link_to "New Episode", new_admin_movie_episode_path(@admin_movie), class: "bg-amaranth-500 hover:bg-amaranth-600 text-white-50 rounded px-4 py-2" %>
+  </div>
 
-<h1>Episodes</h1>
+  <div id="admin_episodes">
+    <% @admin_episodes.each do |admin_episode| %>
+    <div class="max-w-xs" id= "<%= admin_episode.id %>">
+    <%= link_to [:admin, @admin_movie, admin_episode] do %>
+    <% render admin_episode %>
+    <% end %>
+  </div>
+    <% end %>
+  </div>
 
-<div id="admin_episodes">
-  <% @admin_episodes.each do |admin_episode| %>
-    <%= render admin_episode %>
-    <p>
-      <%= link_to "Show this episode", [:admin, @admin_movie, admin_episode] %>
-    </p>
-  <% end %>
 </div>
-
-<%= link_to "New episode", new_admin_movie_episode_path(@admin_movie) %>
