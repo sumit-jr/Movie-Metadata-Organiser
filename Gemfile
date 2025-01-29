@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "acts_as_list", "~> 1.0"
 gem "bootsnap", require: false
 gem "byebug", "~> 11.1", ">= 11.1.3"
 gem "devise", "~> 4.9", ">= 4.9.4"
