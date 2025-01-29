@@ -6,7 +6,7 @@
     <%= link_to "New Episode", new_admin_movie_episode_path(@admin_movie), class: "bg-amaranth-500 hover:bg-amaranth-600 text-white-50 rounded px-4 py-2" %>
   </div>
 
-  <div data-controller="episode" data-lesson-movie-value="<%= @admin_movie.id %> data-sortable-animation-value="150" id="admin_episodes" class="flex flex-col flex-wrap justify-center lg:justify-start items-center lg:flex-row w-full gap-5 pb-4">
+  <div data-controller="episode" data-episode-movie-value="<%= @admin_movie.id %> data-sortable-animation-value="150" id="admin_episodes" class="flex flex-col flex-wrap justify-center lg:justify-start items-center lg:flex-row w-full gap-5 pb-4">
     <% @admin_episodes.each do |admin_episode| %>
     <div class="max-w-xs" id= "<%= admin_episode.id %>">
     <%= link_to [:admin, @admin_movie, admin_episode] do %>
