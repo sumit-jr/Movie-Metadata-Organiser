@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "admin" => "admin#index"
 
   post "/webhook" => "webhooks#stripe"
+  patch "/admin/movies/:movie_id/episodes/:id/move" => "admin/episodes#move"
 
   # Defines the root path route ("/")
   root "movies#index"
