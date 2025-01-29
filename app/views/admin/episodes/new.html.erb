@@ -1,11 +1,9 @@
-<% content_for :title, "New episode" %>
+<div class="flex flex-col justify-start items-center w-full">
+  <%= render "form", admin_episode: @admin_episode %>
 
-<h1>New episode</h1>
+  <br>
 
-<%= render "form", admin_episode: @admin_episode %>
-
-<br>
-
-<div>
-  <%= link_to "Back to episodes", admin_episodes_path %>
+  <div>
+    <%= link_to "Back to episodes", admin_movie_episodes_path %>
+  </div>
 </div>
