@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :movies do
       resources :episodes
     end
+    resources :users
   end
 
   get "admin" => "admin#index"
